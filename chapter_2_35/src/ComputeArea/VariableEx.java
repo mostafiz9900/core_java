@@ -1,4 +1,5 @@
 
+/*
 package ComputeArea;
 
 
@@ -37,3 +38,4 @@ public class VariableEx {
     
     
 }
+*/
