@@ -1,0 +1,44 @@
+connect sys as sysdba
+sys
+create user jobs identified by jobs
+grant dba to jobs
+connect
+
+create table sale(
+id number primary key , name varchar2(50) not null);
+
+create table sale_back(
+id number primary key , name varchar2(50) not null);
+
+CREATE OR REPLACE TRIGGER sale_after_insert AFTER INSERT sale
+FOR EACH ROW
+DECLARE
+BEGIN
+insert into sale_back(:new.id, :new.name);
+DBMS_OUTPUT.PUT_LINE('Recod input successful backup table');
+END;
+
+CREATE OR REPLACE TRIGGER sale_after_insert AFTER INSERT ON sale
+FOR EACH ROW
+DECLARE
+BEGIN
+insert into sale_back(:new.id, :new.name);
+DBMS_OUTPUT.PUT_LINE('Recod input successful backup table');
+END;
+///////////////update///////////////
+CREATE OR REPLACE TRIGGER sale_after_update AFTER UPDATE ON sale
+FOR EACH ROW
+DECLARE
+BEGIN
+
+update sale_back set name=:new.name where id=:new.id;
+DBMS_OUTPUT.PUT_LINE('Recod input successful backup table');
+END;
+////////////////delet/////////////////
+CREATE OR REPLACE TRIGGER sale_after_delete AFTER DELETE ON sale 
+FOR EACH ROW
+DECLARE
+BEGIN
+delete sale_back where id=:old.id;
+DBMS_OUTPUT.PUT_LINE('Recod input successful backup table');
+END;
