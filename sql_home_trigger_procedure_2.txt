@@ -1,0 +1,72 @@
+create table dep (id number primary key, name varchar2(20) not null);
+create table dep_backup (id number primary key, name varchar2(20) not null);
+///////Trigger create
+CREATE OR REPLACE TRIGGER depa_after_insert AFTER INSERT on dep
+FOR EACH ROW
+DECLARE
+BEGIN
+insert into dep_backup values(:new.id, :new.name);
+DBMS_OUTPUT.PUT_LINE('successfully insert');
+END;
+insert into dep values(1,'Md Mostafizur');
+
+create or replace trigger depa_after_update after update on dep
+for each row
+declare
+begin
+update dep_backup set name=:new.name where id=:old.id;
+dbms_output.put_line('successfully update');
+end;
+
+update dep set name='Minhan' where id=1;
+
+////////Delete
+create or replace trigger depa_after_delete after delete on dep
+for each row
+declare
+begin
+delete dep_backup where id=:old.id;
+dbms_output.put_line('successfully delete');
+end;
+
+delete from dep where id=1;
+
+/////////////procedure
+
+create or replace procedure dep_insert(
+	p_id dep.id%type,
+	p_name dep.name%type)
+is
+begin
+insert into dep(id,name)
+values(p_id,p_name);
+end;
+
+begin
+dep_insert(2,'Mostafizur');
+end;
+//////////
+create or replace procedure dep_update(
+	p_id dep.id%type,
+	p_name dep.name%type)
+is
+begin
+update dep set name=p_name where id=p_id;
+end;
+
+begin
+dep_update(2,'Minhan');
+end;
+
+//////////
+create or replace procedure dep_delete(
+	p_id dep.id%type,
+	p_name dep.name%type)
+is
+begin
+delete from dep where id=p_id;
+end;
+
+begin
+dep_delete(2);
+end;

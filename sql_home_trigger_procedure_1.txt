@@ -1,0 +1,87 @@
+create table department(
+	id number, 
+	name varchar2(20));
+
+create table department_backup(
+	id number, 
+	name varchar2(20));
+
+CREATE OR REPLACE TRIGGER dep_after_insert AFTER INSERT on department
+FOR EACH ROW
+DECLARE
+BEGIN
+insert into department_backup values(:new.id, :new.name);
+DBMS_OUTPUT.PUT_LINE('Successfully insert');
+END;
+
+////////update 
+CREATE OR REPLACE TRIGGER dep_after_update AFTER UPDATE on department
+FOR EACH ROW
+DECLARE
+BEGIN
+update  department_backup set name=:new.name where id=:old.id;
+DBMS_OUTPUT.PUT_LINE('Successfully update');
+END;
+/////delete 
+
+CREATE OR REPLACE TRIGGER dep_after_delete AFTER delete on department
+FOR EACH ROW
+DECLARE
+BEGIN
+delete  department_backup where id=:old.id;
+DBMS_OUTPUT.PUT_LINE('Successfully delete');
+END;
+
+describe department;
+describe department_backup;
+
+insert into department values(1,'Mostafiz');
+
+update department set name='minham' where id=1;
+
+delete from department where id =1;
+/////////procedure
+
+CREATE OR REPLACE PROCEDURE insert_department(
+	p_id in department.id%type,
+	p_name in department.name%type)
+IS 
+BEGIN
+INSERT INTO DEPARTMENT(id,name)
+values(p_id,p_name);
+END;
+
+begin
+ insert_department(1,'Mostafiz');
+end;
+
+//////procedure update
+
+create or replace procedure update_department(
+	P_id in department.id%type,
+	p_name in department.name%type)
+	
+is
+begin
+update department set name=p_name where id=p_id;
+end;
+	
+begin
+update_department (1,'Minham minham');
+end;
+
+////// procedure delete
+
+create or replace procedure delete_department(
+	P_id in department.id%type)
+	
+is
+begin
+delete department where id=p_id;
+end;
+
+
+begin
+delete_department (1);
+end;
+	
