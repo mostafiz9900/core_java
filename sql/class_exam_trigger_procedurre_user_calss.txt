@@ -1,0 +1,79 @@
+create table department(id number primary key, fname varchar2(20), ename varchar2(20));
+create table department_backup(id number primary key, fname varchar2(20), ename varchar2(20));
+
+/////////////trigger  insert
+CREATE OR REPLACE TRIGGER department_after_insert AFTER INSERT ON department 
+FOR EACH ROW
+DECLARE
+BEGIN 
+insert into department_backup values(:new.id, :new.fname, :new.ename);
+DBMS_OUTPUT.PUT_LINE('Successfully insert');
+END;
+
+insert into department values(11, 'Rojina','Khatun');
+select * from department;
+select * from department_backup;
+describe department;
+
+
+
+/////////////trigger  update
+CREATE OR REPLACE TRIGGER department_after_update AFTER UPDATE ON department 
+FOR EACH ROW
+DECLARE
+BEGIN 
+update department_backup set fname=:new.fname where id=:old.id;
+DBMS_OUTPUT.PUT_LINE('Successfully update');
+END;
+
+update department set fname='Mostafizur' ,ename='Rahman' where id=11;
+
+/////////////trigger  delete
+CREATE OR REPLACE TRIGGER department_after_delete AFTER DELETE ON department 
+FOR EACH ROW
+DECLARE
+BEGIN 
+delete department_backup where id=:old.id; 
+DBMS_OUTPUT.PUT_LINE('Successfully delete');
+END;
+delete table  department;
+
+
+///////////////procedure
+create or replace procedure department_insert(
+	p_id in department.id%type,
+	p_fname in department.fname%type,
+	p_ename in department.ename%type)
+	
+is
+begin
+insert into department (id,fname,ename) values(p_id,p_fname,p_ename);
+end;
+
+
+begin
+ department_insert (15, 'eeeeeee', 'ddddddd');
+end;
+select * from department;
+
+///////////////procedure update
+create or replace procedure department_update(
+	p_id in department.id%type,
+	p_fname in department.fname%type,
+	p_ename in department.ename%type)
+	
+is
+begin
+update department set fname=fname,ename=p_ename where p_id=id;
+end;
+///////////////procedure delete
+create or replace procedure department_delete(
+	p_id in department.id%type)
+	
+is
+begin
+delete from department where id=p_id;
+end;
+
+
+
