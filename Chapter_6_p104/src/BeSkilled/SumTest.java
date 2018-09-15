@@ -1,9 +1,9 @@
-package SumTest;
+package BeSkilled;
 
-public class Chapter_6_p104 {
+public class SumTest {
 
     public static void main(String[] args) {
-        Chapter_6_p104 m=new Chapter_6_p104();
+        SumTest m=new SumTest();
         int rs=m.makeSum(1,2 ,3, 4, 5, 6, 7, 8, 9,10);
         System.out.println("Total sum "+rs);
     }

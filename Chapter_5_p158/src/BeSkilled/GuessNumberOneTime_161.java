@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author User
  */
-public class guessNumberOneTime_131 {
+public class GuessNumberOneTime_161 {
 
     public static void main(String[] args) {
         int number = (int) (Math.random() * 101);
