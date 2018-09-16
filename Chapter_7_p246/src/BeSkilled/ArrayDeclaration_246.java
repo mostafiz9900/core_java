@@ -16,6 +16,7 @@ public class ArrayDeclaration_246 {
         x[1] = 20;
         System.out.println("x[0] " + x[0]);
         System.out.println("x[1] " + x[1]);
+        System.out.println("x[1] " + x.length);
 
         for (int i : x) {
             System.out.println(i);
