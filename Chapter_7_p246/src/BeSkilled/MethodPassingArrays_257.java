@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package BeSkilled;
 
-/**
- *
- * @author User
- */
 public class MethodPassingArrays_257 {
 
     public static void main(String[] args) {
         int x[] = {44, 55, 88, 66};
         //displayArray(x);
-        
+
         transferArray(x);
         displayArray(transferArray(x));
     }

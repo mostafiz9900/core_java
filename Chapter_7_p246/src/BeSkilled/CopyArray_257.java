@@ -14,6 +14,7 @@ public class CopyArray_257 {
     public static void main(String[] args) {
         int sourceArray[] = {2, 3, 4, 5, 10};
         int targerArray[] = new int[sourceArray.length];
+        
         for (int i = 0; i < sourceArray.length; i++) {
             targerArray[i] = sourceArray[i];
 
