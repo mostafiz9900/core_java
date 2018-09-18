@@ -27,8 +27,8 @@ public class ExamSum {
             sum3 += j;
             k++;
 
-        } while (k < 10)
-            System.out.println(k);
+        } while (m < 10)
+            System.out.println(m);
         
         System.out.println(sum3 + " sum3");
     }
