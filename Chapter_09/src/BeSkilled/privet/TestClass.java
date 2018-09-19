@@ -6,11 +6,13 @@ public class TestClass {
     protected int num2 = 20;
 
     public static void main(String[] args) {
+        EncapsultedObjectEx im = new EncapsultedObjectEx();
         TestClass tc = new TestClass();
         System.out.println(num + " ");
         System.out.println(tc.num2 + " ");//non static vareable cal
         myPan();
         tc.myHistory();
+        
     }
 
     //Direct call
