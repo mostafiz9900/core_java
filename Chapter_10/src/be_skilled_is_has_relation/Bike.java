@@ -1,5 +1,5 @@
 
-package be_skilled.is_has_relation;
+package be_skilled_is_has_relation;
 
 
 public class Bike {
