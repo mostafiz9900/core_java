@@ -5,19 +5,35 @@
  */
 package be_skilled;
 
-
 public class PalindomEx {
+
     public static void main(String[] args) {
-        System.out.println(isPlandom("mom"));
+       // System.out.println(isPlandom("mom"));
+        String[] arra = {"mom", "sss", "mim", "eye"};
+        System.out.println(countPalindom(arra));
     }
-    
-    public boolean isPlandom(String s){
-   StringBuilder newstr =new StringBuilder(s);
-   boolean stat =false;
-        if (str.reverse()==s) {
-            newstat=true;
-            
+
+    public static boolean isPlandom(String s) {
+
+        StringBuilder str = new StringBuilder(s);
+
+        String newStr = String.valueOf(str.reverse());
+
+        if (newStr.equals(s)) {
+            return true;
+
         }
-        return status;
+        return false;
+    }
+
+    public static int countPalindom(String[] s) {
+        int counter = 0;
+        for (int i = 0; i < s.length; i++) {
+            if (isPlandom(s[i])) {
+                counter++;
+                
+            }
+        }
+        return counter;
     }
 }
