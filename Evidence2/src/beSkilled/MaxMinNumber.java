@@ -16,7 +16,7 @@ public class MaxMinNumber {
 
         }
         Arrays.sort(arr);
-        System.out.println("Min " + arr[0] + "Min " + arr[arr.length - 1]);
+        System.out.println("Min " + arr[0] + "Max " + arr[arr.length - 1]);
     }
 
 }
