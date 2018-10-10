@@ -3,6 +3,7 @@ package beSkilled;
 import java.util.ArrayList;
 
 public class GenericStack_741<E> {
+    
 
     private ArrayList<E> list = new ArrayList<>();
 
